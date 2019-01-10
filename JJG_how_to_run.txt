@@ -1,0 +1,35 @@
+1. Not sure if tstng is required or not. Got the jar from
+http://www.java2s.com/Code/JarDownload/testng/testng-6.8.7.jar.zip
+2. I assume junit4?
+2. export CLASSPATH=".:selenium-server-standalone.jar:testng-6.8.7.jar:/usr/share/java/junit4-4.12.jar"
+
+export CLASSPATH=".:/home/jonathan/code/ruttenburg/selenium-server-standalone.jar:/usr/share/java/junit4-4.12.jar"
+
+1. start the selenium strandalone server
+~/code/ruttenburg$ xvfb-run java -Dwebdriver.chrome.driver=/usr/bin/chromedriver -jar selenium-server-standalone-3.141.59.jar 
+
+2. Modify the code for Chromedriver, since I had that installed as above and didn't want to hunt for the ffoxdriver. I made minor changes to FunctionalTest.java replacing firefox references with chrome
+
+3. Compile the .java files to .class files. Note my paths to the JARs are unique to me and my linux setup, adjust as needed for your machine
+javac -cp .:"/home/jonathan/code/ruttenburg/selenium-server-standalone.jar:/usr/share/java/junit4-4.12.jar" *.java
+[Note the cp parameters is for the classpath, you could also have done export CLASSPATH=..... ]
+
+4. There is some funny with the long package names that I hack around by doing the following
+mkdir -p  com/kimschiller/selenium/FunctionalTests
+cp *.class com/kimschiller/selenium/FunctionalTests/
+I should probably investigate how to do this 'properly'. But I don't fully grasp Maven either, so this is why I do what I do 
+
+5. Here is how to run the test in the tutorial  - SignUpFormTest
+java -cp .:"/home/jonathan/code/ruttenburg/FunctionalTests:/home/jonathan/code/ruttenburg/selenium-server-standalone.jar:/usr/share/java/junit4-4.12.jar" org.junit.runner.JUnitCore com.kimschiller.selenium.FunctionalTests.SignUpFormTest
+
+Sit back and watch your browser do its magic.
+
+References
+1. https://www.pluralsight.com/guides/getting-started-with-page-object-pattern-for-your-selenium-tests
+
+Clone his repo from:
+https://github.com/kschiller/page-object-pattern-tutorial [from near the top of his article]
+Or my fork of it with my chromedriver change:
+https://github.com/eyesonly/page-object-pattern-tutorial
+
+2. http://benjamintan.io/blog/2014/10/14/running-junit-test-from-the-command-line/

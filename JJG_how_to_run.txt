@@ -1,9 +1,4 @@
-1. Not sure if tstng is required or not. Got the jar from
-http://www.java2s.com/Code/JarDownload/testng/testng-6.8.7.jar.zip
-2. I assume junit4?
-2. export CLASSPATH=".:selenium-server-standalone.jar:testng-6.8.7.jar:/usr/share/java/junit4-4.12.jar"
-
-export CLASSPATH=".:/home/jonathan/code/ruttenburg/selenium-server-standalone.jar:/usr/share/java/junit4-4.12.jar"
+How I ran the tutorial, for Michael:
 
 1. start the selenium strandalone server
 ~/code/ruttenburg$ xvfb-run java -Dwebdriver.chrome.driver=/usr/bin/chromedriver -jar selenium-server-standalone-3.141.59.jar 
